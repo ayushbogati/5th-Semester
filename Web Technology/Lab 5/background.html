@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Toggle Mode</title>
+    <style>
+        body {
+            transition: background-color 0.3s, color 0.3s;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        .dark {
+            background-color: #121212;
+            color: white;
+        }
+
+        .light {
+            background-color: #ffffff;
+            color: black;
+        }
+    </style>
+
+    <script>
+        function setCookie(name, value, days) {
+            let date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = name + "=" + value + ";expires=" + date.toUTCString() + ";path=/";
+        }
+
+        function getCookie(name) {
+            let cookies = document.cookie.split("; ");
+            for (let i = 0; i < cookies.length; i++) {
+                let parts = cookies[i].split("=");
+                if (parts[0] === name) {
+                    return parts[1];
+                }
+            }
+            return "";
+        }
+
+        function applyMode() {
+            let mode = getCookie("mode");
+
+            if (mode === "dark") {
+                document.body.className = "dark";
+            } else {
+                document.body.className = "light"; // default
+            }
+        }
+
+        function toggleMode() {
+            if (document.body.className === "light") {
+                document.body.className = "dark";
+                setCookie("mode", "dark", 7);
+            } else {
+                document.body.className = "light";
+                setCookie("mode", "light", 7);
+            }
+        }
+    </script>
+</head>
+
+<body onload="applyMode()">
+
+<h2>Toggle Mode</h2>
+<button onclick="toggleMode()">Toggle</button>
+
+</body>
+</html>

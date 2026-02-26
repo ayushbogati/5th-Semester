@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Factorial using Recursion</title>
+</head>
+<body>
+
+<h2>Factorial Calculator (Recursive)</h2>
+<button onclick="calculateFactorial()">Find Factorial</button>
+
+<p id="result"></p>
+
+<script>
+    // Recursive function to calculate factorial
+    const factorial = (n) => {
+        if (n === 0 || n === 1) {
+            return 1;
+        }
+        return n * factorial(n - 1);
+    };
+
+    function calculateFactorial() {
+        const num = parseInt(prompt("Enter a number:"));
+
+        if (isNaN(num)) {
+            document.getElementById("result").innerText = 
+                "Please enter a valid number.";
+            return;
+        }
+
+        if (num < 0) {
+            document.getElementById("result").innerText = 
+                "Factorial is not defined for negative numbers.";
+            return;
+        }
+
+        const result = factorial(num);
+        document.getElementById("result").innerText =
+            `Factorial of ${num} is: ${result}`;
+    }
+</script>
+
+</body>
+</html>

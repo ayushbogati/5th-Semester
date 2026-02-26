@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>5 Minute Countdown Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+        #timer {
+            font-size: 40px;
+            font-weight: bold;
+            margin: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>5 Minute Countdown Timer</h2>
+
+<div id="timer">05:00</div>
+<button onclick="startTimer()">Start Timer</button>
+
+<script>
+    let time = 300;
+    let timerInterval;
+
+    function startTimer() {
+        clearInterval(timerInterval);
+
+        timerInterval = setInterval(() => {
+            let minutes = Math.floor(time / 60);
+            let seconds = time % 60;
+
+            // Format time as MM:SS
+            document.getElementById("timer").innerText =
+                (minutes < 10 ? "0" : "") + minutes + ":" +
+                (seconds < 10 ? "0" : "") + seconds;
+
+            time--;
+
+            if (time < 0) {
+                clearInterval(timerInterval);
+                alert("⏰ Time's Up!");
+            }
+        }, 1000);
+    }
+</script>
+
+</body>
+</html>
